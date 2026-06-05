@@ -98,10 +98,10 @@
 <div id="tab-music" style="display:none;">
   <div class="sec-title">음악 조건 설정</div>
   <div class="card">
-    <div class="sr"><span class="sl">총 트랙 수</span><input type="range" min="1" max="30" step="1" value="3" id="sl-tracks" oninput="update()"><span class="sv" id="v-tracks">3곡</span></div>
-    <div class="sr"><span class="sl">월 릴리즈 수</span><input type="range" min="0" max="4" step="1" value="1" id="sl-releases" oninput="update()"><span class="sv" id="v-releases">1곡</span></div>
-    <div class="sr"><span class="sl">월 스트리밍 수</span><input type="range" min="100" max="100000" step="100" value="800" id="sl-streams" oninput="update()"><span class="sv" id="v-streams">800</span></div>
-    <div class="sr"><span class="sl">TikTok 월 사용 수</span><input type="range" min="0" max="5000" step="50" value="200" id="sl-tt" oninput="update()"><span class="sv" id="v-tt">200</span></div>
+    <div class="sr"><span class="sl">총 트랙 수</span><input type="range" min="1" max="30" step="1" value="3" id="sl-tracks" oninput="syncFromSlider('tracks')"><input class="nv" type="number" min="1" step="1" value="3" id="in-tracks" oninput="syncFromInput('tracks')"></div>
+<div class="sr"><span class="sl">월 릴리즈 수</span><input type="range" min="0" max="4" step="1" value="1" id="sl-releases" oninput="syncFromSlider('releases')"><input class="nv" type="number" min="0" step="1" value="1" id="in-releases" oninput="syncFromInput('releases')"></div>
+<div class="sr"><span class="sl">월 스트리밍 수</span><input type="range" min="100" max="100000" step="100" value="800" id="sl-streams" oninput="syncFromSlider('streams')"><input class="nv" type="number" min="0" step="1" value="800" id="in-streams" oninput="syncFromInput('streams')"></div>
+<div class="sr"><span class="sl">TikTok 월 사용 수</span><input type="range" min="0" max="5000" step="50" value="200" id="sl-tt" oninput="syncFromSlider('tt')"><input class="nv" type="number" min="0" step="1" value="200" id="in-tt" oninput="syncFromInput('tt')"></div>
   </div>
   <div class="sec-title">플랫폼별 음악 수익</div>
   <div class="card" id="music-breakdown"></div>
@@ -110,13 +110,13 @@
 <div id="tab-youtube" style="display:none;">
   <div class="sec-title">YouTube 채널 설정</div>
   <div class="card">
-    <div class="sr"><span class="sl">구독자 수</span><input type="range" min="0" max="100000" step="100" value="500" id="sl-subs" oninput="update()"><span class="sv" id="v-subs">500</span></div>
-    <div class="sr"><span class="sl">일반 동영상 수</span><input type="range" min="0" max="100" step="1" value="5" id="sl-vids" oninput="update()"><span class="sv" id="v-vids">5개</span></div>
-    <div class="sr"><span class="sl">동영상 평균 길이 (분)</span><input type="range" min="1" max="60" step="1" value="8" id="sl-vlen" oninput="update()"><span class="sv" id="v-vlen">8분</span></div>
-    <div class="sr"><span class="sl">동영상 월 조회수</span><input type="range" min="0" max="50000" step="100" value="1000" id="sl-vviews" oninput="update()"><span class="sv" id="v-vviews">1,000</span></div>
-    <div class="sr"><span class="sl">쇼츠 수</span><input type="range" min="0" max="200" step="1" value="10" id="sl-shorts" oninput="update()"><span class="sv" id="v-shorts">10개</span></div>
-    <div class="sr"><span class="sl">쇼츠 평균 길이 (초)</span><input type="range" min="5" max="60" step="5" value="30" id="sl-slen" oninput="update()"><span class="sv" id="v-slen">30초</span></div>
-    <div class="sr"><span class="sl">쇼츠 월 조회수</span><input type="range" min="0" max="500000" step="1000" value="5000" id="sl-sviews" oninput="update()"><span class="sv" id="v-sviews">5,000</span></div>
+    <div class="sr"><span class="sl">구독자 수</span><input type="range" min="0" max="100000" step="100" value="500" id="sl-subs" oninput="syncFromSlider('subs')"><input class="nv" type="number" min="0" step="1" value="500" id="in-subs" oninput="syncFromInput('subs')"></div>
+<div class="sr"><span class="sl">일반 동영상 수</span><input type="range" min="0" max="100" step="1" value="5" id="sl-vids" oninput="syncFromSlider('vids')"><input class="nv" type="number" min="0" step="1" value="5" id="in-vids" oninput="syncFromInput('vids')"></div>
+<div class="sr"><span class="sl">동영상 평균 길이 (분)</span><input type="range" min="1" max="60" step="1" value="8" id="sl-vlen" oninput="syncFromSlider('vlen')"><input class="nv" type="number" min="1" step="1" value="8" id="in-vlen" oninput="syncFromInput('vlen')"></div>
+<div class="sr"><span class="sl">동영상 월 조회수</span><input type="range" min="0" max="50000" step="100" value="1000" id="sl-vviews" oninput="syncFromSlider('vviews')"><input class="nv" type="number" min="0" step="1" value="1000" id="in-vviews" oninput="syncFromInput('vviews')"></div>
+<div class="sr"><span class="sl">쇼츠 수</span><input type="range" min="0" max="200" step="1" value="10" id="sl-shorts" oninput="syncFromSlider('shorts')"><input class="nv" type="number" min="0" step="1" value="10" id="in-shorts" oninput="syncFromInput('shorts')"></div>
+<div class="sr"><span class="sl">쇼츠 평균 길이 (초)</span><input type="range" min="5" max="60" step="5" value="30" id="sl-slen" oninput="syncFromSlider('slen')"><input class="nv" type="number" min="1" step="1" value="30" id="in-slen" oninput="syncFromInput('slen')"></div>
+<div class="sr"><span class="sl">쇼츠 월 조회수</span><input type="range" min="0" max="500000" step="1000" value="5000" id="sl-sviews" oninput="syncFromSlider('sviews')"><input class="nv" type="number" min="0" step="1" value="5000" id="in-sviews" oninput="syncFromInput('sviews')"></div>
   </div>
   <div id="yt-detail"></div>
 </div>
@@ -159,17 +159,34 @@ function showTab(t,el){
 }
 
 function g(id){return +document.getElementById(id).value;}
+function n(key){
+  return +(document.getElementById('in-'+key)?.value || 0);
+}
+
+function syncFromSlider(key){
+  document.getElementById('in-'+key).value = document.getElementById('sl-'+key).value;
+  update();
+}
+
+function syncFromInput(key){
+  const input = document.getElementById('in-'+key);
+  const slider = document.getElementById('sl-'+key);
+  const val = +input.value || 0;
+  const max = +slider.max;
+  slider.value = Math.min(val, max);
+  update();
+}
 function fmtK(n){return n>=1000?(n/1000).toFixed(1)+'K':Math.round(n).toLocaleString();}
 function fd(n){return '$'+n.toFixed(2);}
 
 function getInp(){
   const m=SM[scenario];
   return{
-    tracks:g('sl-tracks'), releases:g('sl-releases'),
-    streams:Math.round(g('sl-streams')*m.s), tt:Math.round(g('sl-tt')*m.t),
-    subs:Math.round(g('sl-subs')*m.sub),
-    vids:g('sl-vids'), vlen:g('sl-vlen'), vviews:Math.round(g('sl-vviews')*m.y),
-    shorts:g('sl-shorts'), slen:g('sl-slen'), sviews:Math.round(g('sl-sviews')*m.y),
+    tracks:n('tracks'), releases:n('releases'),
+    streams:Math.round(n('streams')*m.s), tt:Math.round(n('tt')*m.t),
+    subs:Math.round(n('subs')*m.sub),
+    vids:n('vids'), vlen:n('vlen'), vviews:Math.round(n('vviews')*m.y),
+    shorts:n('shorts'), slen:n('slen'), sviews:Math.round(n('sviews')*m.y),
     gr:m.g
   };
 }
@@ -190,17 +207,6 @@ function calcYT(inp){
 
 function update(){
   const inp=getInp();
-  document.getElementById('v-tracks').textContent=g('sl-tracks')+'곡';
-  document.getElementById('v-releases').textContent=g('sl-releases')+'곡';
-  document.getElementById('v-streams').textContent=fmtK(g('sl-streams'));
-  document.getElementById('v-tt').textContent=fmtK(g('sl-tt'));
-  document.getElementById('v-subs').textContent=fmtK(g('sl-subs'));
-  document.getElementById('v-vids').textContent=g('sl-vids')+'개';
-  document.getElementById('v-vlen').textContent=g('sl-vlen')+'분';
-  document.getElementById('v-vviews').textContent=fmtK(g('sl-vviews'));
-  document.getElementById('v-shorts').textContent=g('sl-shorts')+'개';
-  document.getElementById('v-slen').textContent=g('sl-slen')+'초';
-  document.getElementById('v-sviews').textContent=fmtK(g('sl-sviews'));
 
   const m=calcM(inp), yt=calcYT(inp), tot=m.total+yt.total;
 
