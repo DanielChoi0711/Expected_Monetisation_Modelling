@@ -1,0 +1,308 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+.hero{background:linear-gradient(135deg,#7F77DD 0%,#AFA9EC 50%,#D4537E 100%);border-radius:16px;padding:1.5rem 1.75rem;margin-bottom:1.5rem;color:#fff;}
+.hero-title{font-size:20px;font-weight:500;color:#fff;margin-bottom:4px;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,0.78);}
+.hero-total{font-size:32px;font-weight:500;color:#fff;margin-top:12px;}
+.hero-total-label{font-size:12px;color:rgba(255,255,255,0.7);margin-top:2px;}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px;}
+.hero-mc{background:rgba(255,255,255,0.15);border-radius:10px;padding:10px 14px;}
+.hero-ml{font-size:11px;color:rgba(255,255,255,0.72);margin-bottom:3px;}
+.hero-mv{font-size:17px;font-weight:500;color:#fff;}
+.tab-nav{display:flex;gap:0;margin-bottom:1.5rem;background:rgba(127,119,221,0.08);border-radius:12px;padding:4px;}
+.tnav{flex:1;font-size:13px;padding:9px 6px;border-radius:9px;border:none;cursor:pointer;background:transparent;color:#7F77DD;font-weight:500;transition:background .2s,color .2s;text-align:center;}
+.tnav.on{background:linear-gradient(135deg,#7F77DD,#534AB7);color:#fff;}
+.tnav i{display:block;font-size:18px;margin-bottom:3px;}
+.sec-title{font-size:12px;font-weight:500;color:#7F77DD;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;}
+.card{background:var(--color-background-primary);border:.5px solid rgba(127,119,221,0.2);border-radius:14px;padding:1rem 1.25rem;margin-bottom:12px;}
+.sr{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.sl{font-size:13px;color:var(--color-text-secondary);min-width:155px;}
+.sv{font-size:13px;font-weight:500;min-width:64px;text-align:right;color:#534AB7;}
+.pr{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:.5px solid rgba(127,119,221,0.12);}
+.pr:last-child{border-bottom:none;}
+.pn{font-size:13px;font-weight:500;color:var(--color-text-primary);min-width:155px;}
+.prate{font-size:11px;color:var(--color-text-secondary);min-width:80px;}
+.pest{font-size:13px;font-weight:500;color:#534AB7;margin-left:auto;}
+.pbg{background:rgba(127,119,221,0.1);border-radius:4px;height:5px;flex:1;overflow:hidden;}
+.pb{height:100%;border-radius:4px;transition:width .4s;}
+.mc{background:rgba(127,119,221,0.07);border-radius:10px;padding:12px 14px;}
+.ml{font-size:12px;color:#7F77DD;margin-bottom:5px;}
+.mv{font-size:19px;font-weight:500;color:var(--color-text-primary);}
+.ms{font-size:11px;color:var(--color-text-tertiary);margin-top:2px;}
+.mg{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:1.5rem;}
+.yt-block{background:rgba(127,119,221,0.06);border:.5px solid rgba(127,119,221,0.15);border-radius:12px;padding:1rem 1.25rem;margin-bottom:12px;}
+.yt-head{font-size:14px;font-weight:500;color:#534AB7;margin-bottom:10px;display:flex;align-items:center;gap:7px;}
+.mono-row{display:flex;justify-content:space-between;padding:5px 0;font-size:13px;border-bottom:.5px solid rgba(127,119,221,0.08);}
+.mono-row:last-child{border-bottom:none;}
+.mono-k{color:var(--color-text-secondary);}
+.mono-v{font-weight:500;color:var(--color-text-primary);}
+.elig-ok{background:rgba(29,158,117,0.1);color:#085041;border-radius:10px;padding:9px 13px;font-size:12px;display:flex;align-items:center;gap:7px;margin-bottom:10px;}
+.elig-no{background:rgba(226,75,74,0.08);color:#791F1F;border-radius:10px;padding:9px 13px;font-size:12px;display:flex;align-items:center;gap:7px;margin-bottom:10px;}
+.notice{font-size:12px;color:#534AB7;background:rgba(127,119,221,0.08);border-radius:8px;padding:8px 11px;margin-top:6px;line-height:1.6;}
+.sbtn-row{display:flex;gap:6px;margin-bottom:1.5rem;}
+.sbtn{font-size:12px;padding:5px 12px;border-radius:8px;border:.5px solid rgba(127,119,221,0.3);cursor:pointer;background:transparent;color:#7F77DD;}
+.sbtn.on{background:linear-gradient(135deg,#7F77DD,#534AB7);color:#fff;border-color:transparent;}
+.road-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+.road-dot.cur{box-shadow:0 0 0 3px rgba(127,119,221,0.25);}
+</style>
+
+<div style="padding:1rem 0;">
+<h2 class="sr-only">Expected Monetisation — 음악 + YouTube 통합 수익 예측 대시보드</h2>
+
+<div class="hero">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
+    <div>
+      <div class="hero-title">Expected Monetisation</div>
+      <div class="hero-sub">Distrokid · Spotify · YouTube · Apple Music · TikTok</div>
+    </div>
+    <div class="sbtn-row" style="margin-bottom:0;">
+      <button class="sbtn on" id="s-base" onclick="setScenario('base')">현재</button>
+      <button class="sbtn" id="s-growth" onclick="setScenario('growth')">성장</button>
+      <button class="sbtn" id="s-viral" onclick="setScenario('viral')">바이럴</button>
+    </div>
+  </div>
+  <div class="hero-total" id="hero-total">$0.00</div>
+  <div class="hero-total-label">예상 월 총 수익 (USD)</div>
+  <div class="hero-grid">
+    <div class="hero-mc"><div class="hero-ml">음악 수익</div><div class="hero-mv" id="hero-music">$0.00</div></div>
+    <div class="hero-mc"><div class="hero-ml">YouTube 수익</div><div class="hero-mv" id="hero-yt">$0.00</div></div>
+    <div class="hero-mc"><div class="hero-ml">연간 예상</div><div class="hero-mv" id="hero-annual">$0.00</div></div>
+    <div class="hero-mc"><div class="hero-ml">트랙당 평균</div><div class="hero-mv" id="hero-per">$0.00</div></div>
+  </div>
+</div>
+
+<div class="tab-nav">
+  <button class="tnav on" id="tnav-all" onclick="showTab('all',this)"><i class="ti ti-layout-dashboard" aria-hidden="true"></i>전체</button>
+  <button class="tnav" id="tnav-music" onclick="showTab('music',this)"><i class="ti ti-music" aria-hidden="true"></i>음악</button>
+  <button class="tnav" id="tnav-youtube" onclick="showTab('youtube',this)"><i class="ti ti-brand-youtube" aria-hidden="true"></i>YouTube</button>
+  <button class="tnav" id="tnav-forecast" onclick="showTab('forecast',this)"><i class="ti ti-chart-line" aria-hidden="true"></i>예측</button>
+</div>
+
+<div id="tab-all">
+  <div class="sec-title">수익 구성 전체</div>
+  <div class="card" id="all-breakdown"></div>
+</div>
+
+<div id="tab-music" style="display:none;">
+  <div class="sec-title">음악 조건 설정</div>
+  <div class="card">
+    <div class="sr"><span class="sl">총 트랙 수</span><input type="range" min="1" max="30" step="1" value="3" id="sl-tracks" oninput="update()"><span class="sv" id="v-tracks">3곡</span></div>
+    <div class="sr"><span class="sl">월 릴리즈 수</span><input type="range" min="0" max="4" step="1" value="1" id="sl-releases" oninput="update()"><span class="sv" id="v-releases">1곡</span></div>
+    <div class="sr"><span class="sl">월 스트리밍 수</span><input type="range" min="100" max="100000" step="100" value="800" id="sl-streams" oninput="update()"><span class="sv" id="v-streams">800</span></div>
+    <div class="sr"><span class="sl">TikTok 월 사용 수</span><input type="range" min="0" max="5000" step="50" value="200" id="sl-tt" oninput="update()"><span class="sv" id="v-tt">200</span></div>
+  </div>
+  <div class="sec-title">플랫폼별 음악 수익</div>
+  <div class="card" id="music-breakdown"></div>
+</div>
+
+<div id="tab-youtube" style="display:none;">
+  <div class="sec-title">YouTube 채널 설정</div>
+  <div class="card">
+    <div class="sr"><span class="sl">구독자 수</span><input type="range" min="0" max="100000" step="100" value="500" id="sl-subs" oninput="update()"><span class="sv" id="v-subs">500</span></div>
+    <div class="sr"><span class="sl">일반 동영상 수</span><input type="range" min="0" max="100" step="1" value="5" id="sl-vids" oninput="update()"><span class="sv" id="v-vids">5개</span></div>
+    <div class="sr"><span class="sl">동영상 평균 길이 (분)</span><input type="range" min="1" max="60" step="1" value="8" id="sl-vlen" oninput="update()"><span class="sv" id="v-vlen">8분</span></div>
+    <div class="sr"><span class="sl">동영상 월 조회수</span><input type="range" min="0" max="50000" step="100" value="1000" id="sl-vviews" oninput="update()"><span class="sv" id="v-vviews">1,000</span></div>
+    <div class="sr"><span class="sl">쇼츠 수</span><input type="range" min="0" max="200" step="1" value="10" id="sl-shorts" oninput="update()"><span class="sv" id="v-shorts">10개</span></div>
+    <div class="sr"><span class="sl">쇼츠 평균 길이 (초)</span><input type="range" min="5" max="60" step="5" value="30" id="sl-slen" oninput="update()"><span class="sv" id="v-slen">30초</span></div>
+    <div class="sr"><span class="sl">쇼츠 월 조회수</span><input type="range" min="0" max="500000" step="1000" value="5000" id="sl-sviews" oninput="update()"><span class="sv" id="v-sviews">5,000</span></div>
+  </div>
+  <div id="yt-detail"></div>
+</div>
+
+<div id="tab-forecast" style="display:none;">
+  <div class="sec-title">6개월 수익 예측</div>
+  <div style="position:relative;width:100%;height:240px;">
+    <canvas id="revenueChart" role="img" aria-label="6개월 예상 수익 추이 차트">월별 수익 예측</canvas>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-size:12px;color:var(--color-text-secondary);">
+    <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#7F77DD;"></span>음악 수익</span>
+    <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#D4537E;"></span>YouTube 광고</span>
+    <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:3px;border-radius:2px;background:#AFA9EC;"></span>성장 시나리오</span>
+  </div>
+  <div style="margin-top:1.5rem;">
+    <div class="sec-title">수익화 로드맵</div>
+    <div class="card" id="roadmap"></div>
+  </div>
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+let scenario='base', chart=null, activeTab='all';
+const SM={base:{s:1,y:1,t:1,sub:1,g:1.05},growth:{s:3,y:4,t:5,sub:3,g:1.15},viral:{s:15,y:20,t:50,sub:10,g:1.30}};
+
+function setScenario(sc){
+  scenario=sc;
+  ['base','growth','viral'].forEach(k=>document.getElementById('s-'+k).classList.toggle('on',k===sc));
+  update();
+}
+
+function showTab(t,el){
+  activeTab=t;
+  ['all','music','youtube','forecast'].forEach(k=>document.getElementById('tab-'+k).style.display=k===t?'block':'none');
+  document.querySelectorAll('.tnav').forEach(b=>b.classList.remove('on'));
+  el.classList.add('on');
+  if(t==='forecast') buildChart();
+}
+
+function g(id){return +document.getElementById(id).value;}
+function fmtK(n){return n>=1000?(n/1000).toFixed(1)+'K':Math.round(n).toLocaleString();}
+function fd(n){return '$'+n.toFixed(2);}
+
+function getInp(){
+  const m=SM[scenario];
+  return{
+    tracks:g('sl-tracks'), releases:g('sl-releases'),
+    streams:Math.round(g('sl-streams')*m.s), tt:Math.round(g('sl-tt')*m.t),
+    subs:Math.round(g('sl-subs')*m.sub),
+    vids:g('sl-vids'), vlen:g('sl-vlen'), vviews:Math.round(g('sl-vviews')*m.y),
+    shorts:g('sl-shorts'), slen:g('sl-slen'), sviews:Math.round(g('sl-sviews')*m.y),
+    gr:m.g
+  };
+}
+
+function calcM(inp){
+  const sp=inp.streams*0.65*0.004, ap=inp.streams*0.20*0.007,
+        ym=inp.streams*0.15*0.002, tt=inp.tt*0.00003;
+  return{sp,ap,ym,tt,total:sp+ap+ym+tt};
+}
+
+function calcYT(inp){
+  const lr=inp.vids*inp.vviews*0.45*(2.5/1000);
+  const sr=inp.shorts*inp.sviews*(0.05/1000);
+  const wh=Math.round(inp.vids*inp.vlen*inp.vviews/60);
+  const elig=inp.subs>=1000&&wh>=4000;
+  return{lr,sr,total:lr+sr,wh,elig};
+}
+
+function update(){
+  const inp=getInp();
+  document.getElementById('v-tracks').textContent=g('sl-tracks')+'곡';
+  document.getElementById('v-releases').textContent=g('sl-releases')+'곡';
+  document.getElementById('v-streams').textContent=fmtK(g('sl-streams'));
+  document.getElementById('v-tt').textContent=fmtK(g('sl-tt'));
+  document.getElementById('v-subs').textContent=fmtK(g('sl-subs'));
+  document.getElementById('v-vids').textContent=g('sl-vids')+'개';
+  document.getElementById('v-vlen').textContent=g('sl-vlen')+'분';
+  document.getElementById('v-vviews').textContent=fmtK(g('sl-vviews'));
+  document.getElementById('v-shorts').textContent=g('sl-shorts')+'개';
+  document.getElementById('v-slen').textContent=g('sl-slen')+'초';
+  document.getElementById('v-sviews').textContent=fmtK(g('sl-sviews'));
+
+  const m=calcM(inp), yt=calcYT(inp), tot=m.total+yt.total;
+
+  document.getElementById('hero-total').textContent=fd(tot);
+  document.getElementById('hero-music').textContent=fd(m.total);
+  document.getElementById('hero-yt').textContent=fd(yt.total);
+  document.getElementById('hero-annual').textContent=fd(tot*12);
+  document.getElementById('hero-per').textContent=fd(m.total/Math.max(inp.tracks,1));
+
+  const allItems=[
+    {name:'Spotify',est:m.sp,color:'#1D9E75'},
+    {name:'Apple Music',est:m.ap,color:'#534AB7'},
+    {name:'YouTube Music',est:m.ym,color:'#7F77DD'},
+    {name:'TikTok',est:m.tt,color:'#D4537E'},
+    {name:'YouTube 동영상',est:yt.lr,color:'#E24B4A'},
+    {name:'YouTube 쇼츠',est:yt.sr,color:'#D85A30'},
+  ];
+  const mx=Math.max(...allItems.map(i=>i.est),0.001);
+  document.getElementById('all-breakdown').innerHTML=allItems.map(p=>`
+    <div class="pr">
+      <span class="pn">${p.name}</span>
+      <div class="pbg"><div class="pb" style="width:${Math.round(p.est/mx*100)}%;background:${p.color};"></div></div>
+      <span class="pest">${fd(p.est)}</span>
+    </div>`).join('');
+
+  const musicItems=[
+    {name:'Spotify',rate:'$0.004/stream',est:m.sp,color:'#1D9E75'},
+    {name:'Apple Music',rate:'$0.007/stream',est:m.ap,color:'#534AB7'},
+    {name:'YouTube Music',rate:'$0.002/stream',est:m.ym,color:'#7F77DD'},
+    {name:'TikTok',rate:'$0.00003/use',est:m.tt,color:'#D4537E'},
+  ];
+  const mxM=Math.max(...musicItems.map(i=>i.est),0.001);
+  document.getElementById('music-breakdown').innerHTML=musicItems.map(p=>`
+    <div class="pr">
+      <span class="pn">${p.name}</span>
+      <span class="prate">${p.rate}</span>
+      <div class="pbg"><div class="pb" style="width:${Math.round(p.est/mxM*100)}%;background:${p.color};"></div></div>
+      <span class="pest">${fd(p.est)}</span>
+    </div>`).join('');
+
+  const eligHtml=yt.elig
+    ?`<div class="elig-ok"><i class="ti ti-check" style="font-size:15px;" aria-hidden="true"></i> YPP 수익화 조건 충족 — 광고 수익 활성화 가능</div>`
+    :`<div class="elig-no"><i class="ti ti-x" style="font-size:15px;" aria-hidden="true"></i> YPP 미충족 — 구독자 ${fmtK(inp.subs)} / 1,000명 · 시청 ${fmtK(yt.wh)} / 4,000시간</div>`;
+
+  document.getElementById('yt-detail').innerHTML=`
+    ${eligHtml}
+    <div class="yt-block">
+      <div class="yt-head"><i class="ti ti-player-play" style="font-size:16px;" aria-hidden="true"></i>일반 동영상</div>
+      <div class="mono-row"><span class="mono-k">동영상 수</span><span class="mono-v">${g('sl-vids')}개</span></div>
+      <div class="mono-row"><span class="mono-k">평균 길이</span><span class="mono-v">${g('sl-vlen')}분</span></div>
+      <div class="mono-row"><span class="mono-k">월 총 조회수</span><span class="mono-v">${fmtK(inp.vids*inp.vviews)}</span></div>
+      <div class="mono-row"><span class="mono-k">CPM (추정)</span><span class="mono-v">$2.50</span></div>
+      <div class="mono-row"><span class="mono-k" style="font-weight:500;">월 예상 수익</span><span class="mono-v" style="color:#7F77DD;font-size:15px;">${fd(yt.lr)}</span></div>
+    </div>
+    <div class="yt-block">
+      <div class="yt-head"><i class="ti ti-device-mobile" style="font-size:16px;" aria-hidden="true"></i>쇼츠</div>
+      <div class="mono-row"><span class="mono-k">쇼츠 수</span><span class="mono-v">${g('sl-shorts')}개</span></div>
+      <div class="mono-row"><span class="mono-k">평균 길이</span><span class="mono-v">${g('sl-slen')}초</span></div>
+      <div class="mono-row"><span class="mono-k">월 총 조회수</span><span class="mono-v">${fmtK(inp.shorts*inp.sviews)}</span></div>
+      <div class="mono-row"><span class="mono-k">RPM (추정)</span><span class="mono-v">$0.05/1,000뷰</span></div>
+      <div class="mono-row"><span class="mono-k" style="font-weight:500;">월 예상 수익</span><span class="mono-v" style="color:#D4537E;font-size:15px;">${fd(yt.sr)}</span></div>
+      <div class="notice">쇼츠는 일반 동영상보다 CPM이 훨씬 낮아요. 볼륨(조회수)이 핵심이에요.</div>
+    </div>`;
+
+  if(activeTab==='forecast') buildChart();
+
+  const stages=[
+    {label:'현재 (초기)',cond:'구독자 < 1K',est:'$0~10',tip:'꾸준한 업로드 + SNS 연동'},
+    {label:'YPP 달성',cond:'구독자 1K + 시청 4,000시간',est:'$10~50',tip:'광고 수익화 시작'},
+    {label:'성장 단계',cond:'구독자 10K~50K',est:'$50~300',tip:'스폰서십 / 브랜드딜 가능'},
+    {label:'수익화 단계',cond:'구독자 100K+',est:'$300+',tip:'Sync licensing + 채널 멤버십'},
+  ];
+  const curIdx=inp.subs<1000?0:inp.subs<10000?1:inp.subs<50000?2:3;
+  const roadEl=document.getElementById('roadmap');
+  if(roadEl) roadEl.innerHTML=stages.map((s,i)=>`
+    <div style="display:flex;align-items:flex-start;gap:12px;padding:9px 0;${i<stages.length-1?'border-bottom:.5px solid rgba(127,119,221,0.12);':''}">
+      <div class="road-dot ${i===curIdx?'cur':''}" style="background:${i===curIdx?'#7F77DD':'#AFA9EC'};"></div>
+      <div style="flex:1;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:13px;font-weight:500;color:var(--color-text-primary);">${s.label}</span>
+          ${i===curIdx?'<span style="font-size:11px;padding:2px 8px;border-radius:6px;background:rgba(127,119,221,0.12);color:#534AB7;">현재 위치</span>':''}
+        </div>
+        <div style="font-size:12px;color:var(--color-text-secondary);margin-top:2px;">${s.cond} · 예상 ${s.est}/월</div>
+        <div style="font-size:12px;color:var(--color-text-tertiary);margin-top:1px;">${s.tip}</div>
+      </div>
+    </div>`).join('');
+}
+
+function buildChart(){
+  const inp=getInp();
+  const m=calcM(inp), yt=calcYT(inp);
+  const months=['1월','2월','3월','4월','5월','6월'];
+  const mD=months.map((_,i)=>parseFloat((m.total*Math.pow(inp.gr,i)).toFixed(2)));
+  const yD=months.map((_,i)=>parseFloat((yt.total*Math.pow(inp.gr,i)).toFixed(2)));
+  const gD=months.map((_,i)=>parseFloat(((m.total+yt.total)*Math.pow(inp.gr*1.12,i)).toFixed(2)));
+  if(chart) chart.destroy();
+  chart=new Chart(document.getElementById('revenueChart'),{
+    type:'line',
+    data:{labels:months,datasets:[
+      {label:'음악',data:mD,borderColor:'#7F77DD',backgroundColor:'rgba(127,119,221,0.08)',tension:0.4,fill:true,pointRadius:4,pointBackgroundColor:'#7F77DD'},
+      {label:'YouTube',data:yD,borderColor:'#D4537E',backgroundColor:'rgba(212,83,126,0.06)',tension:0.4,fill:true,pointRadius:4,pointBackgroundColor:'#D4537E'},
+      {label:'성장',data:gD,borderColor:'#AFA9EC',tension:0.4,borderDash:[5,3],fill:false,pointRadius:3,pointBackgroundColor:'#AFA9EC'}
+    ]},
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{
+        y:{ticks:{callback:v=>'$'+v.toFixed(2),font:{size:11}},grid:{color:'rgba(127,119,221,0.08)'}},
+        x:{ticks:{font:{size:11},autoSkip:false},grid:{display:false}}
+      }
+    }
+  });
+}
+
+update();
+</script>
